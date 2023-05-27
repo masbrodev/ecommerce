@@ -13,7 +13,6 @@ import (
 func ListProduct() {
 	helpers.CleanScreen()
 
-	consoleReader := bufio.NewReader(os.Stdin)
 	var products []entity.Product
 	err := config.DB.Find(&products).Error
 
@@ -31,11 +30,11 @@ func ListProduct() {
 	fmt.Println("Tekan (m) untuk kembali ke halaman utama")
 	fmt.Println("Tekan (q) untuk keluar dari aplikasi")
 
-	input, _ = consoleReader.ReadString('\n')
+	fmt.Scanln(&input)
 	switch input {
-	case "m\n":
+	case "m":
 		MainMenu()
-	case "q\n":
+	case "q":
 		fmt.Println("Terima kasih telah menggunakaan apliaksi Mini Ecommerce")
 		os.Exit(1)
 	default:
@@ -45,8 +44,6 @@ func ListProduct() {
 }
 func OrderProduct(id string) {
 	helpers.CleanScreen()
-
-	consoleReader := bufio.NewReader(os.Stdin)
 
 	var product entity.Product
 	err := config.DB.Where("ID = ?", id).First(&product).Error
@@ -62,14 +59,14 @@ func OrderProduct(id string) {
 	fmt.Println("Tekan (m) untuk kembali ke halaman utama")
 	fmt.Println("Tekan (q) untuk keluar dari aplikasi")
 
-	input, _ = consoleReader.ReadString('\n')
+	fmt.Scanln(&input)
 
 	switch input {
-	case "y\n":
+	case "y":
 		CreateOrder(product)
-	case "m\n":
+	case "m":
 		MainMenu()
-	case "q\n":
+	case "q":
 		fmt.Println("Terima kasih telah menggunakan aplikasi Mini Ecommerce")
 		os.Exit(1)
 	default:
