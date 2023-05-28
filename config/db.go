@@ -21,5 +21,7 @@ func DBConnect() {
 		DB = db
 	}
 
-	db.AutoMigrate(&entity.Product{}, &entity.Order{})
+	db.AutoMigrate(&entity.Product{}, &entity.Order{}, &entity.User{}, &entity.Token{})
+	// db.Delete(&entity.Token{})
+	db.Exec("truncate table tokens")
 }

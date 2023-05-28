@@ -9,7 +9,7 @@ import (
 func MainMenu() {
 	helpers.CleanScreen()
 
-	fmt.Println("Selamat datang di Mini Ecommerce App")
+	fmt.Println("Selamat datang " + ShowName())
 	fmt.Println("____________________________________")
 
 	var input string

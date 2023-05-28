@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"bufio"
 	"ecommerce/config"
 	"ecommerce/entity"
 	"ecommerce/helpers"
@@ -11,7 +10,6 @@ import (
 
 func ListOrder() {
 	helpers.CleanScreen()
-	consoleReader := bufio.NewReader(os.Stdin)
 	var order []entity.Order
 
 	err := config.DB.Preload("Product").Find(&order).Error
@@ -29,10 +27,10 @@ func ListOrder() {
 	fmt.Println("Tekan (key apapun) untuk kembali ke halaman utama")
 	fmt.Println("tekan (q) untuk keluar dari aplikasi")
 
-	input, _ = consoleReader.ReadString('\n')
+	fmt.Scanln(&input)
 
 	switch input {
-	case "q\n":
+	case "q":
 		fmt.Println("Terima kasih telah menggunakan Mini Ecommerce")
 		os.Exit(1)
 	default:
