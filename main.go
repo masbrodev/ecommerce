@@ -7,6 +7,6 @@ import (
 
 func main() {
 	config.DBConnect()
-	cli.MainMenu()
+	cli.MenuLogin()
 
 }
